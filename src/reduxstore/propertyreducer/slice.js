@@ -27,14 +27,14 @@ export const PropertySlice = createSlice(
             builder.addCase(
                 getAllProperties.fulfilled,
                 ( state, action ) => {
-                    state.properties = action.payload,
+                    state.properties = action.payload
                     state.status = STATUS.FULFILLED
                 } 
             )
             .addCase(
                 getPropertyById.fulfilled,
                 ( state, action ) => {
-                    state.property = action.payload,
+                    state.property = action.payload
                     state.status = STATUS.FULFILLED
                 }
             )
