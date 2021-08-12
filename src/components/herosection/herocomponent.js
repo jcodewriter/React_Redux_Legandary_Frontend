@@ -27,7 +27,7 @@ export default function HeroComponent() {
     //Transaction for Hero title
     const intervalId = setInterval(() =>
       setIndex(index => index + 1),
-      3000 // every 3 seconds
+      5000 // every 3 seconds
     );
     return () => clearTimeout(intervalId);
   }, []);
@@ -63,7 +63,7 @@ export default function HeroComponent() {
                   </h1>
                   <p className="mt-6 max-w-lg mx-auto text-center text-xl text-white sm:max-w-3xl">
                     Convenience meets luxury, Get the chance to experience luxurious living with the best amenities while having 
-                    everything else you need as your tips.
+                    everything else you need at your tips.
                   </p>
                   <div className="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                     <div className="">

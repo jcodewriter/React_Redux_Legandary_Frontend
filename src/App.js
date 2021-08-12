@@ -1,14 +1,12 @@
 import React from 'react'
 import './App.css';
 import MainLayout from 'views/mainlayout';
-import MouseParticles from 'react-mouse-particles';
 import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import DashboardMainLayout from 'admin/mainlayout';
 import SigninPage from 'views/signin';
 
-
 function App() {
-  //fake auth
+
   return (
     <div>
       <Router>
@@ -23,7 +21,6 @@ function App() {
             <MainLayout/>
           </Route>
         </Switch>
-        <MouseParticles g={3} num={4} radius={5} color={["#ffff00"]} life={0.8} cull="stats,image-wrapper" level={6} />
       </Router>
     </div>
   );
