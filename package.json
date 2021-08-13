@@ -20,6 +20,7 @@
     "react-google-places-autocomplete": "^2.0.5",
     "react-google-recaptcha": "^2.1.0",
     "react-hook-form": "^7.12.2",
+    "react-notifications-component": "^3.1.0",
     "react-rating-stars-component": "^2.2.0",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",

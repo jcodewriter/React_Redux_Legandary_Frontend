@@ -1,53 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HeroComponent from 'components/herosection';
 import PropertyIistItem from 'components/properties/propertylist';
-import BedRoom from 'assets/imgs/property/bedroom.jpg';
 import { SearchIcon } from '@heroicons/react/solid';
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProperties } from 'reduxstore/propertyreducer/action';
 
-const properties = [
-    {
-        name: 'Spacious Apartment',
-        cost: 100,
-        imageUrl: BedRoom,
-    },
-    {
-        name: 'Spacious Apartment',
-        cost: 100,
-        imageUrl: BedRoom,
-    },
-    {
-        name: 'Spacious Apartment',
-        cost: 100,
-        imageUrl: BedRoom,
-    },
-    {
-        name: 'Spacious Apartment',
-        cost: 100,
-        imageUrl: BedRoom,
-    },
-    {
-        name: 'Spacious Apartment',
-        cost: 100,
-        imageUrl: BedRoom,
-    },
-    {
-        name: 'Spacious Apartment',
-        cost: 100,
-        imageUrl: BedRoom,
-    },
-    {
-        name: 'Spacious Apartment',
-        cost: 100,
-        imageUrl: BedRoom,
-    },
-    {
-        name: 'Spacious Apartment',
-        cost: 100,
-        imageUrl: BedRoom,
-    },
-]
 
-export default function PropertiesPage() {
+const PropertiesPage  = () => {
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //   dispatch(getAllProperties());
+    // }, []);
+    const properties = [];
+    //  = useSelector((state) => state.properties.properties);
     return (
         <div>
             <HeroComponent/>
@@ -86,5 +51,4 @@ export default function PropertiesPage() {
     )
 }
 
-
-
+export default PropertiesPage;
