@@ -3,10 +3,13 @@ import 'firebase/storage'
 import 'firebase/database'
 
 const uploadImageToFirebase = async ( file, setProgress, getImageUrl ) => {
+    const task = firebase.database().ref('/');
+    console.log(file);
+    var key = task.push().key;
     //Get Reference of Firebase store
     let store = firebase.storage();
     let storageRef = store.ref();
-    let uploadTask = storageRef.child(`images/property/${file.name.split('.')[0]}`).put(file);
+    let uploadTask = storageRef.child(`images/property/image${key}`).put(file);
     uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
         (snapshot) => {
             let progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes))*100;
@@ -16,7 +19,7 @@ const uploadImageToFirebase = async ( file, setProgress, getImageUrl ) => {
         },() =>{
             uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
                 getImageUrl(url);
-                recordImagedata({name: file.name,url:url})
+                recordImagedata({name:`image${key}`, url:url})
             })
         }
     )
@@ -24,9 +27,8 @@ const uploadImageToFirebase = async ( file, setProgress, getImageUrl ) => {
 
 const recordImagedata = async ( data ) => {
     const task = firebase.database().ref('/property/imageRecord');
-    var key = task.push().key;
     var updates = {};
-    updates['/' + key] = data;
+    updates['/' + data.name] = data;
     return task.update(updates);
 }
 
@@ -35,4 +37,9 @@ const removeStore = async () => {
     task.remove();
 }
 
-export { uploadImageToFirebase, recordImagedata, removeStore };
+const deleteImage = async (url) => {
+    let pictureRef = firebase.storage().refFromURL(url);
+    pictureRef.delete();
+}
+
+export { uploadImageToFirebase, recordImagedata, removeStore, deleteImage };

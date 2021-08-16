@@ -23,7 +23,6 @@ export default function ContactUsPage() {
     }
     if(recaptureCallback){
       emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID,templateParams, process.env.REACT_APP_EMAILJS_USER_ID).then((response)=>{
-        console.log('SUCCESS!', response.status, response.text);
       }).catch((err) => {
         console.log('FAILED...', err);
       });
@@ -309,9 +308,9 @@ export default function ContactUsPage() {
                       defaultValue={''}
                     />
                   </div>
-                  {/* <div className={recaptureCallback?"hidden":"flex justify-center mt-10"}>
+                  <div className={recaptureCallback?"hidden":"flex justify-center mt-10"}>
                     <RecaptureComponent setrecaptureCallback = {setrecaptureCallback}/>
-                  </div> */}
+                  </div>
                 </div>
                 {
                   recaptureCallback &&
