@@ -3,17 +3,19 @@ import Slider from "react-slick";
 import { ArrowNarrowRightIcon } from "@heroicons/react/outline";
 import { getAllProperties } from "reduxstore/propertyreducer/action";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-export default function CarouselPropertyComponent() {
+export default function CarouselPropertyComponent() {  
+
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     lazyLoad: true,
     arrows: false,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 1500,
     pauseOnHover: true,
     responsive: [
@@ -29,7 +31,7 @@ export default function CarouselPropertyComponent() {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -42,6 +44,7 @@ export default function CarouselPropertyComponent() {
       },
     ],
   };
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllProperties());
@@ -68,47 +71,59 @@ export default function CarouselPropertyComponent() {
 }
 
 const CardItem = ({ item }) => {
+  const settingsChildren = {
+    dots: false,
+    infinite: true,
+    fade: true,
+    pauseOnHover: false,
+    swipeToSlide: false,
+    swipe: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    lazyLoad: true,
+    arrows: true,
+    autoplay: false,
+  };
+  //Go to Detail view
+  const history = useHistory();
+  const gotoDetail = () => {
+    history.push(`/details/${item._id}`)
+  }
   return (
     <>
       <div className="space-y-4 mx-4 my-10 bg-white rounded-lg shadow-xl">
-        <div className="aspect-w-3 aspect-h-2 p-5">
-          <img
-            className="object-cover w-full shadow-lg rounded-lg"
-            src={item.imageURLs[1].url}
-            alt=""
-          />
-        </div>
+          <Slider {...settingsChildren}>
+            {item.imageURLs.map((img) => {
+              return (
+                <div className="aspect-w-3 aspect-h-2 p-5 h-72"  key={img._id}> 
+                  <img
+                    className="object-cover w-full h-full shadow-lg rounded-lg"
+                    src={img.url}
+                    alt=""
+                  />
+                </div>        
+              );
+            })}
+          </Slider>
         <div className="text-lg leading-6 font-medium space-y-1 px-5 w-full">
           <h3 className="truncate ">{item.propertyName}</h3>
           <p className="text-indigo-600">Nightly Rate: ${item.nightlyRate}</p>
         </div>
-
-        <ul className="flex space-x-5 px-5 pt-3">
+        <ul className="flex space-x-5 px-5 pt-3 p-10">
           <li>
-            <span className="px-2 py-1 bg-red-400 rounded-lg text-white cursor-pointer hover:bg-red-600" onClick={() => {
-                const win = window.open(`/details/${item._id}`, "_blank");
-                win.focus();
-            }}>
+            <span className="px-2 py-1 bg-red-400 rounded-lg text-white cursor-pointer hover:bg-red-600" onClick={gotoDetail}>
               View Details
             </span>
           </li>
           <li>
-            <span className="px-2 py-1 bg-red-400 rounded-lg text-white cursor-pointer hover:bg-red-600">
-              Flyer
-            </span>
-          </li>
-          <li>
-            <span className="px-2 py-1 bg-red-400 rounded-lg text-white cursor-pointer hover:bg-red-600 ">
+            <span className="px-2 py-1 bg-red-400 rounded-lg text-white cursor-pointer hover:bg-red-600" onClick={gotoDetail}>
               Airbnb
             </span>
           </li>
         </ul>
-        <div className="pb-5 flex justify-end px-5">
-          <div className="bg-blue-200 rounded-full h-10 w-10 flex items-center justify-center cursor-pointer hover:bg-blue-600">
-            <ArrowNarrowRightIcon className="h-6 text-white" />
-          </div>
-        </div>
       </div>
     </>
   );
 };
+

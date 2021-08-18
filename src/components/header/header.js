@@ -10,7 +10,7 @@ import {
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import BrandIcon from 'assets/imgs/brand/png-white-background.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { SignOut } from 'reduxstore/authreducer/action';
 
@@ -20,24 +20,7 @@ const company = [
 ];
 const resources = [
   { name: 'Guides', href: '#', icon: BookmarkAltIcon },
-];
-const blogPosts = [
-  {
-    id: 1,
-    name: 'Boost your conversion rate',
-    href: '#',
-    preview: 'Eget ullamcorper ac ut vulputate fames nec mattis pellentesque elementum. Viverra tempor id mus.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1558478551-1a378f63328e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2849&q=80',
-  },
-  {
-    id: 2,
-    name: 'How to use search engine optimization to drive traffic to your site',
-    href: '#',
-    preview: 'Eget ullamcorper ac ut vulputate fames nec mattis pellentesque elementum. Viverra tempor id mus.',
-    imageUrl:
-      'https://images.unsplash.com/1/apple-gear-looking-pretty.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
-  },
+  { name: 'Staging', href: '/staging', icon: BookmarkAltIcon },
 ];
 
 function classNames(...classes) {
@@ -49,10 +32,12 @@ export default function HeaderComponent() {
 
   const authUser = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const path = location.pathname;
 
-    return (
-      <Popover className="relative bg-white">
-        {({ open }) => (
+return (
+  <Popover className="relative bg-white">
+      {({ open }) => (
           <>
             <div className="absolute inset-0 shadow z-30 pointer-events-none" aria-hidden="true" />
             <div className="relative z-20">
@@ -148,7 +133,7 @@ export default function HeaderComponent() {
                                     </h3>
                                     <ul className="mt-5 space-y-6">
                                       {resources.map((item) => (
-                                        <li key={item.name} className="flow-root">
+                                        <Link to={item.name} className="flow-root" key={item.name}>
                                           <a
                                             href={item.href}
                                             className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
@@ -159,44 +144,13 @@ export default function HeaderComponent() {
                                             />
                                             <span className="ml-4">{item.name}</span>
                                           </a>
-                                        </li>
+                                        </Link>
                                       ))}
                                     </ul>
                                   </div>
                                 </nav>
                                 <div className="bg-gray-50 px-4 py-8 sm:py-12 sm:px-6 lg:px-8 xl:pl-12">
-                                  {/* <div>
-                                    <h3 className="text-sm font-medium tracking-wide text-gray-500 uppercase">
-                                      From the blog
-                                    </h3>
-                                    <ul className="mt-6 space-y-6">
-                                      {blogPosts.map((post) => (
-                                        <li key={post.id} className="flow-root">
-                                          <a href={post.href} className="-m-3 p-3 flex rounded-lg hover:bg-gray-100">
-                                            <div className="hidden sm:block flex-shrink-0">
-                                              <img
-                                                className="w-32 h-20 object-cover rounded-md"
-                                                src={post.imageUrl}
-                                                alt=""
-                                              />
-                                            </div>
-                                            <div className="w-0 flex-1 sm:ml-8">
-                                              <h4 className="text-base font-medium text-gray-900 truncate">
-                                                {post.name}
-                                              </h4>
-                                              <p className="mt-1 text-sm text-gray-500">{post.preview}</p>
-                                            </div>
-                                          </a>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                  <div className="mt-6 text-sm font-medium">
-                                    <a href="#" className="text-indigo-600 hover:text-indigo-500">
-                                      {' '}
-                                      View all posts <span aria-hidden="true">&rarr;</span>
-                                    </a>
-                                  </div> */}
+                                  
                                 </div>
                               </div>
                             </Popover.Panel>
@@ -206,25 +160,27 @@ export default function HeaderComponent() {
                     </Popover>
                   </Popover.Group>
                     {authUser ?
-                    <div className="flex items-center md:ml-12">
-                      <div onClick={() => dispatch(SignOut())} className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer">
-                        Sign Out
+                      <div className="flex items-center md:ml-12">
+                        <div onClick={() => dispatch(SignOut())} className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer">
+                          Sign Out
+                        </div>
                       </div>
-                    </div>
-                    :
-                    <div className="flex items-center md:ml-12">
-                      <Link to="/signin" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                        Sign in
-                      </Link>
-                      <Link to="/signup" className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                        Sign up
-                      </Link>
-                    </div>
+                      :
+                      <div className="flex items-center md:ml-12">
+                        <Link to="/signin" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                          Sign in
+                        </Link>
+                        <Link to="/signup" className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                          Sign up
+                        </Link>
+                      </div>
                     }
                 </div>
               </div>
-              <div className="absolute w-full top-28">
-                  <SearchPropertyComponent />
+              <div className="absolute w-full top-28 hidden lg:block">
+                {
+                  ( path == "/") && <SearchPropertyComponent />
+                }
               </div>
             </div>
   
@@ -280,21 +236,17 @@ export default function HeaderComponent() {
                         Properties
                       </Link>
   
-                      <a href="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
-                        Profit from Airbnb
-                      </a>
-  
-                      <a href="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                      <Link to="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                         Courses
-                      </a>
+                      </Link>
   
-                      <a href="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
-                        Resources
-                      </a>
+                      <Link to="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                        Staging
+                      </Link>
   
-                      <a href="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                      <Link to="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                         Blog
-                      </a>
+                      </Link>
   
                       <Link to="/contact" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                         Contact Us

@@ -1,29 +1,37 @@
 /* This example requires Tailwind CSS v2.0+ */
 import React from 'react'
 import HomeBanner from 'assets/imgs/background/home-banner.png';
-import PropertyBanner from 'assets/imgs/background/properties-banner-image.png'
-import { Link, useLocation } from 'react-router-dom';
-import ProfitBanner from 'assets/imgs/background/profit-banner.png';
-import ContactBanner from 'assets/imgs/background/contact-banner.png'
-const BANNER = {
-  '/': HomeBanner,
-  '/properties': PropertyBanner,
-  '/profit': ProfitBanner,
-  '/contact': ContactBanner
-}
+import { useLocation } from 'react-router-dom';
+import BellBoyIcon from 'assets/imgs/icon/bellboy.png';
+import DumbBellIcon from 'assets/imgs/icon/dumbbell.png';
+import WifiIcon from 'assets/imgs/icon/wifi-signal.png';
+import KitckenIcon from 'assets/imgs/icon/kitchen.png';
+import PetIcon from 'assets/imgs/icon/pet.png';
+const iconlist = [
+  {
+    text: "Fast WIFI",
+    icon: WifiIcon
+  },
+  {
+    text: "Concierge",
+    icon: BellBoyIcon
+  },
+  {
+    text: "Gym & Fitness",
+    icon: DumbBellIcon
+  },
+  {
+    text: "Full Kitchen",
+    icon: KitckenIcon
+  },
+  {
+    text: "Pet Friendly",
+    icon: PetIcon
+  },
+]
 
 export default function HeroComponent() {
-
-  const [index, setIndex] = React.useState(0);
   const location = useLocation();
-  React.useEffect(() => {
-    //Transaction for Hero title
-    const intervalId = setInterval(() =>
-      setIndex(index => index + 1),
-      5000 // every 3 seconds
-    );
-    return () => clearTimeout(intervalId);
-  }, []);
 
   return (
     <>
@@ -37,14 +45,14 @@ export default function HeroComponent() {
                 <div className="absolute inset-0">
                   <img
                     className="h-full w-full object-cover"
-                    src={BANNER[`${location.pathname}`]}
+                    src={HomeBanner}
                     alt="People working on laptops"
                   />
                 </div>
                 <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
-                  <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                  <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl py-10">
                     <span className="text-white">
-                      <p className="text-center drop-shadow-xl	">Luxury Apartments</p>
+                      <p className="text-center drop-shadow-xl">Luxury Apartments</p>
                       <p className="text-center">Fully Furnished</p>
                     </span>
                   </h1>
@@ -52,58 +60,24 @@ export default function HeroComponent() {
                     Convenience meets luxury, Get the chance to experience luxurious living with the best amenities while having 
                     everything else you need at your tips.
                   </p>
-                  <div className="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                    <div className="">
-                      <Link
-                        to="/properties"
-                        className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8"
-                      >
-                        Get started
-                      </Link>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* Logo cloud */}
-          {
-            (location.pathname != '/contact')&&
-              <div className="bg-yellow-300">
-                <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-                  {/* <div className="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
-                    <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                      <img className="h-12" src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg" alt="Tuple" />
+          <div className="bg-yellow-300">
+            <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 flex flex-wrap justify-between  w-full">
+              {
+                iconlist.map((icon, index) => (
+                  <div key={index} className="text-center mx-3"> 
+                    <div>                      
+                      <img src={icon.icon} className="w-12 md:w-16 h-auto text-center mx-auto"/>
+                      <p className="text-center w-full font-bold">{icon.text}</p>
                     </div>
-                    <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                      <img className="h-12" src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg" alt="Mirage" />
-                    </div>
-                    <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                      <img
-                        className="h-12"
-                        src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg"
-                        alt="StaticKit"
-                      />
-                    </div>
-                    <div className="col-span-1 flex justify-center md:col-span-2 md:col-start-2 lg:col-span-1">
-                      <img
-                        className="h-12"
-                        src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg"
-                        alt="Transistor"
-                      />
-                    </div>
-                    <div className="col-span-2 flex justify-center md:col-span-2 md:col-start-4 lg:col-span-1">
-                      <img
-                        className="h-12"
-                        src="https://tailwindui.com/img/logos/workcation-logo-gray-400.svg"
-                        alt="Workcation"
-                      />
-                    </div>
-                  </div> */}
-                </div>
-              </div>
-          }
+                  </div>
+                ))
+              }
+            </div>
+          </div>          
         </div>
       </main>
     </>
