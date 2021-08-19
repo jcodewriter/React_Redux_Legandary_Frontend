@@ -5,11 +5,9 @@ import GooglePlacesAutoComplete from "../googleautocomplete";
 import { MinusIcon, PlusIcon, SearchIcon } from "@heroicons/react/solid";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
+import { classNames } from "shared/function";
 
 export default function SearchPropertyComponent() {
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
   const locationRef = React.useRef();
   const checkInRef = React.useRef();
   const checkOutRef = React.useRef();
@@ -250,7 +248,7 @@ export default function SearchPropertyComponent() {
                   onClick={
                     (e) => {
                       e.preventDefault(); 
-                      history.push(`/properties?adult=${guestNum.adult}&children=${guestNum.children}&infants=${guestNum.infants}&location=${locationUrl?.description}&checkin=${filterDateRange.from}&checkout=${filterDateRange.to}`)
+                      (guestNum&&locationUrl&&filterDateRange) && history.push(`/properties?adult=${guestNum.adult}&children=${guestNum.children}&infants=${guestNum.infants}&location=${locationUrl?.description}&checkin=${filterDateRange.from}&checkout=${filterDateRange.to}`)
                   }}
                 >
                     <SearchIcon className="text-white w-1/2 h-1/2" />
