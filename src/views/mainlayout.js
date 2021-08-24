@@ -9,6 +9,8 @@ import PropertiesPage from "./properties/properties";
 import Stagingpage from "./staging";
 import PolicyPage from "./policy";
 import NotFoundPage from "./404";
+import EmailVerificaionPage from "./emailverification";
+import NotiVerificationPage from "./emailverification/notiverification";
 
 export default function MainLayout() {
   return (
@@ -22,7 +24,8 @@ export default function MainLayout() {
         <Route path="/contact" component={ContactUsPage}/>
         <Route path="/details/:id" component={PropertyDetailViewPage} />
         <Route path="/policy" component={PolicyPage}/>
-        {/* <HostPrivateRoute path="/host" component={HostMainLayoutPage}/> */}
+        <Route path="/verify/:token" component={EmailVerificaionPage}/>
+        <Route path="/verifynoti" component={NotiVerificationPage}/>
         <Route component={NotFoundPage}/>
       </Switch>
       <FooterComponent />
