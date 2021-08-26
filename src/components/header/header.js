@@ -2,13 +2,14 @@ import { Fragment } from 'react';
 import SearchPropertyComponent from './searchproperty'
 import { Popover, Transition } from '@headlessui/react';
 import {
-    BookmarkAltIcon,
-    InformationCircleIcon,
-    MenuIcon,
-    ShieldCheckIcon,
-    XIcon,
-    UserCircleIcon,
-    SparklesIcon
+  BookmarkAltIcon,
+  InformationCircleIcon,
+  MenuIcon,
+  ShieldCheckIcon,
+  XIcon,
+  UserCircleIcon,
+  SparklesIcon,
+  HomeIcon
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import BrandIcon from 'assets/imgs/brand/png-black-background.png';
@@ -28,6 +29,7 @@ const resources = [
 export default function HeaderComponent() {
 
   const authUser = useSelector((state) => state.auth.user);
+  const authToken = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
   const location = useLocation();
   const path = location.pathname;
@@ -36,8 +38,8 @@ return (
   <Popover className="relative bg-white">
       {({ open }) => (
           <>
-            <div className="absolute inset-0 shadow z-30 pointer-events-none" aria-hidden="true" />
-            <div className="relative z-20">
+            <div className="absolute inset-0 shadow z-40 pointer-events-none" aria-hidden="true" />
+            <div className="relative z-40">
               <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
                 <div>
                   <Link to="/" className="flex">
@@ -130,7 +132,7 @@ return (
                                     </h3>
                                     <ul className="mt-5 space-y-6">
                                       {resources.map((item) => (
-                                        <Link to={item.name} className="flow-root" key={item.name}>
+                                        <Link to={item.href} className="flow-root" key={item.name}>
                                           <div
                                             className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
                                           >
@@ -156,6 +158,20 @@ return (
                                             </div>
                                           </Link>
                                       }
+                                      {
+                                        authUser?.role== "host" &&
+                                          <Link to='/host' className="flow-root">
+                                            <div
+                                              className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
+                                            >
+                                              <HomeIcon
+                                                className="flex-shrink-0 h-6 w-6 text-gray-400"
+                                                aria-hidden="true"
+                                              />
+                                              <span className="ml-4">Add New Space</span>
+                                            </div>
+                                          </Link>
+                                      }
                                     </ul>
                                   </div>
                                 </nav>
@@ -169,7 +185,7 @@ return (
                       )}
                     </Popover>
                   </Popover.Group>
-                    {authUser ?
+                    {authToken ?
                       <div className="flex items-center md:ml-12">
                         <div onClick={() => dispatch(SignOut())} className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-500 hover:bg-red-600 cursor-pointer">
                           Sign Out
@@ -246,17 +262,29 @@ return (
                         Properties
                       </Link>
   
-                      <Link to="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                      <Link to="/profit" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                         Courses
                       </Link>
   
-                      <Link to="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                      <Link to="/staging" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                         Staging
                       </Link>
   
-                      <Link to="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
-                        Blog
+                      <Link to="/policy" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                        Privacy and Policies
                       </Link>
+
+                      {
+                          authUser?.role== "admin" &&<Link to="/admin" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                            Admin
+                          </Link>
+                      }
+
+                      {
+                          authUser?.role== "host" &&<Link to="/host" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                            Add New Space
+                          </Link>
+                      }
   
                       <Link to="/contact" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                         Contact Us
