@@ -2,12 +2,12 @@ export const features = [
     {
       label: "What is the property type?",
       variableName: "propertyType",
-      properties:['Apartment', 'House', 'Condo / Townhome', 'Secondary Unit', 'Unique Space', 'Bed and Breakfast', 'Boutique Hotel', 'Duplex', 'RV / Camper', 'Tiny House']
+      properties:['Apartment', 'House', 'Condo / Townhome', 'Secondary Unit', 'Unique place', 'Bed and Breakfast', 'Boutique Hotel', 'Duplex', 'RV / Camper', 'Tiny House']
     },
     {
       label: "Choose the best option that fits the space in the property that guests will occupy.",
       variableName: "propertySpaceFeature",
-      properties:['An entire place', 'A private room', 'A shared room']
+      properties:['The whole place', 'A private room', 'A shared room']
     },
 ]
   
@@ -36,22 +36,17 @@ export const guestsNum = [
   
 export const lastOffer = {
     'first':[
-      { lable: "Peaceful", variableName: "peaceful" },
-      { lable: "Unique", variableName: "unique" },
-      { lable: "Family-Friendly", variableName: "familiFriendly" },
-      { lable: "Stylish", variableName: "stylish" },
-      { lable: "Central", variableName: "central" },
-      { lable: "Spacious", variableName: "spacious" },
-    ],
-    'second':[
-      { lable: "Security Camera", variableName: "securityCamera" },
-      { lable: "Weapons", variableName: "weapons" },
-      { lable: "Dangerous", variableName: "dangerous" }
+      { lable: "Quiet Neighborhood", variableName: "quietNeighborhood" },
+      { lable: "Rare Space", variableName: "rareSpace" },
+      { lable: "Good for Families", variableName: "goodForFamilies" },
+      { lable: "Sleek Interior", variableName: "sleekInterior" },
+      { lable: "Ideal Location", variableName: "idealLocation" },
+      { lable: "Roomy and Big Space", variableName: "roomyAndBigSpace" },
     ]
   }
 export const amenities = {
     'standout': {
-        title: 'Standout amenities',
+        title: 'Special Amenities',
         lists: [{
                 label: 'Pool',
                 variableName: 'amenities_pool'
@@ -103,7 +98,7 @@ export const amenities = {
         ],
     },
     'favorites': {
-        title: 'Guest favorites',
+        title: "Guest's Pick",
         lists: [{
                 label: 'Wifi',
                 variableName: 'amenities_wifi'
@@ -147,7 +142,7 @@ export const amenities = {
         ],
     },
     'safetyItems': {
-        title: 'Have any of these safety items?',
+        title: 'Safety Devices',
         lists: [{
                 label: 'Smoke alarm',
                 variableName: 'amenities_smoke_alarm'
@@ -167,7 +162,7 @@ export const amenities = {
         ]
     },
     'bathroom': {
-        title: 'Bathroom',
+        title: 'Bathroom Basics',
         lists: [{
                 label: 'Bathtub',
                 variableName: 'amenities_bathtub'
@@ -386,7 +381,7 @@ export const amenities = {
             },
             {
                 label: 'Cooking basics',
-                variableName: 'amenities_cooking basic'
+                variableName: 'amenities_cooking_basic'
             },
             {
                 label: 'Dining table',
@@ -422,27 +417,27 @@ export const amenities = {
             },
             {
                 label: 'Refrigerator',
-                variable: 'amenities-refrigerator'
+                variableName: 'amenities-refrigerator'
             },
             {
                 label: 'Rice maker',
-                variable: 'amenities_rice_maker'
+                variableName: 'amenities_rice_maker'
             },
             {
                 label: 'Stove',
-                variable: 'amenities_stove'
+                variableName: 'amenities_stove'
             },
             {
                 label: 'Toaster',
-                variable: 'amenities_toaster'
+                variableName: 'amenities_toaster'
             },
             {
                 label: 'Trash compactor',
-                variable: 'amenities_trash_compactor'
+                variableName: 'amenities_trash_compactor'
             },
             {
                 label: 'Wine glasses',
-                variable: 'amenities_wine_glasses'
+                variableName: 'amenities_wine_glasses'
             },
         ],
     },
@@ -450,27 +445,27 @@ export const amenities = {
         title: 'Location features',
         lists: [{
                 label: 'Beach access',
-                variable: 'amenities_beach access'
+                variableName: 'amenities_beach_access'
             },
             {
                 label: 'Lake access',
-                variable: 'amenities_lake_access'
+                variableName: 'amenities_lake_access'
             },
             {
                 label: 'Private entrance',
-                variable: 'amenities_private_entrance'
+                variableName: 'amenities_private_entrance'
             },
             {
                 label: 'Resort access',
-                variable: 'amenities_resort_access'
+                variableName: 'amenities_resort_access'
             },
             {
                 label: 'Ski-in/Ski-out',
-                variable: 'amenities_skiin_skiout'
+                variableName: 'amenities_skiin_skiout'
             },
             {
                 label: 'Waterfront',
-                variable: 'amenities_waterfront'
+                variableName: 'amenities_waterfront'
             },
         ],
     },
@@ -478,47 +473,47 @@ export const amenities = {
         title: 'Outdoor',
         lists: [{
                 label: 'Backyard',
-                variable: 'amenities_backyard'
+                variableName: 'amenities_backyard'
             },
             {
                 label: 'BBQ grill',
-                variable: 'amenities_bbg_grill'
+                variableName: 'amenities_bbg_grill'
             },
             {
                 label: 'Beach essentials (Beach towels, umbrella, beach blanket, snorkeling gear)',
-                variable: 'amenities_beach_essentials'
+                variableName: 'amenities_beach_essentials'
             },
             {
                 label: 'Bikes',
-                variable: 'amenities_bikes'
+                variableName: 'amenities_bikes'
             },
             {
                 label: 'Boat slip',
-                variable: 'amenities_boar_slip'
+                variableName: 'amenities_boar_slip'
             },
             {
                 label: 'Fire put',
-                variable: 'amenities_fire_put'
+                variableName: 'amenities_fire_put'
             },
             {
                 label: 'Hammock',
-                variable: 'amenities_hammock'
+                variableName: 'amenities_hammock'
             },
             {
                 label: 'Kayak',
-                variable: 'amenities_kayak'
+                variableName: 'amenities_kayak'
             },
             {
                 label: 'Outdoor dining area',
-                variable: 'amenities_outdoor_dining_area'
+                variableName: 'amenities_outdoor_dining_area'
             },
             {
                 label: 'Outdoor kitchen',
-                variable: 'amenities_outdoor_kitchen'
+                variableName: 'amenities_outdoor_kitchen'
             },
             {
                 label: 'Patio or balcony',
-                variable: 'amenities_patio_balcony'
+                variableName: 'amenities_patio_balcony'
             },
         ],
     },
@@ -526,19 +521,19 @@ export const amenities = {
         title: 'Parking and facilities',
         lists: [{
                 label: 'Elevator',
-                variable: 'amenities_elevator'
+                variableName: 'amenities_elevator'
             },
             {
                 label: 'Free street parking',
-                variable: 'amenities_free_street_parking'
+                variableName: 'amenities_free_street_parking'
             },
             {
                 label: 'Sauna',
-                variable: 'amenities_sauna'
+                variableName: 'amenities_sauna'
             },
             {
                 label: 'Single level home',
-                variable: 'amenities_single_level_home'
+                variableName: 'amenities_single_level_home'
             },
         ],
     },
@@ -546,19 +541,19 @@ export const amenities = {
         title: 'Services',
         lists: [{
                 label: 'Breakfast',
-                variable: 'amenities_breakfast'
+                variableName: 'amenities_breakfast'
             },
             {
                 label: 'Cleaning before checkout',
-                variable: 'amenities_cleaning_before_checkout'
+                variableName: 'amenities_cleaning_before_checkout'
             },
             {
                 label: 'Long term stays allowed 28 days or more',
-                variable: 'amenities_long_term_stay_allowed'
+                variableName: 'amenities_long_term_stay_allowed'
             },
             {
                 label: 'Luggage dropoff allowed',
-                variable: 'amenities_luggage_dropoff_allowed'
+                variableName: 'amenities_luggage_dropoff_allowed'
             },
         ]
     }

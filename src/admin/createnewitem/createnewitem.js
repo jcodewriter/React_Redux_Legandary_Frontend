@@ -53,9 +53,9 @@ export default function CreateNewPropertyPage() {
         <div className="space-y-8 divide-y divide-gray-200">
           <div>
             <div>
-              <h3 className="text-lg leading-6 font-medium text-gray-900">Create Property</h3>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">Add Property.</h3>
               <p className="mt-1 text-sm text-gray-500">
-                This information will be displayed publicly so be careful what you share.
+                Please make sure all information is correct. This will be displayed as part of the property details.
               </p>
             </div>
   
@@ -88,7 +88,7 @@ export default function CreateNewPropertyPage() {
   
               <div className="sm:col-span-6">
                 <label htmlFor="propertyDescription" className="block text-sm font-medium text-gray-700">
-                  Description
+                  Describe property.
                 </label>
                 <div className="mt-1">
                   <textarea
@@ -98,12 +98,12 @@ export default function CreateNewPropertyPage() {
                     defaultValue={''}
                   />
                 </div>
-                <p className="mt-2 text-sm text-gray-500">Write a few sentences about property.</p>
+                <p className="mt-2 text-sm text-gray-500">Write something interesting and captivating about the property.</p>
               </div>            
   
               <div className="sm:col-span-6">
                 <label htmlFor="cover_photo" className="block text-sm font-medium text-gray-700">
-                  Images
+                  Add Images
                 </label>
                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                   <div className="space-y-1 text-center">
@@ -165,7 +165,7 @@ export default function CreateNewPropertyPage() {
   
               <div className="sm:col-span-3">
                 <label htmlFor="hostedByNameEmail" className="block text-sm font-medium text-gray-700">
-                  Email
+                  Email Address
                 </label>
                 <div className="mt-1">
                   <input
@@ -350,9 +350,9 @@ export default function CreateNewPropertyPage() {
               </fieldset>   
             </div>
             <fieldset>
-              <div className="grid sm:grid-cols-2 grid-cols-1">
-                <div>
-                  <legend className='text-base font-medium py-2 text-gray-900'>Describe the property.</legend>
+              <div className="grid sm:grid-cols-4 grid-cols-1 mt-5">
+                <div className="col-span-1">
+                  <legend className='text-base font-medium py-2 text-gray-900'>Property Highlights</legend>
                   {
                     lastOffer.first.map((item, index) => (
                       <div className="relative flex items-start" key={index}>
@@ -372,26 +372,9 @@ export default function CreateNewPropertyPage() {
                     ))
                   }
                 </div>
-                <div>
-                  <legend className='text-base font-medium py-2 text-gray-900'>Does the property has any of the following?</legend>
-                  {
-                    lastOffer.second.map((item, index) => (
-                      <div className="relative flex items-start" key={index}>
-                        <div className="flex items-center h-5">
-                          <input
-                            {...register( `${item.variableName}`)}
-                            type="checkbox"
-                            className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                          />
-                        </div>
-                        <div className="ml-3 text-sm">
-                          <label htmlFor= {item.variableName} className="font-medium text-gray-700">
-                            {item.lable}
-                          </label>
-                        </div>
-                      </div>
-                    ))
-                  }
+                <div className="border px-5 py-2 rounded-md col-span-3">
+                  <h2 className="text-base font-medium py-2 text-gray-900">Fees</h2>
+                  <div></div>
                 </div>
               </div>
             </fieldset>       
