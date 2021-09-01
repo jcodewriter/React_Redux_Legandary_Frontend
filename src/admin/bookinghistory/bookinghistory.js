@@ -1,5 +1,5 @@
 import BookHistoryAdminComponent from 'components/admin/booking/bookhistory'
-import BookUsersComponent from 'components/admin/booking/bookusertable'
+import BookPropertyListComponent from 'components/admin/booking/bookusertable'
 import React from 'react'
 
 function BookingManagementPage() {
@@ -16,9 +16,9 @@ function BookingManagementPage() {
                 </main>
                 <aside className="hidden relative xl:order-first xl:flex xl:flex-col flex-shrink-0 w-96  border-gray-200">
                     <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
-                        <div className="h-full overflow-y-auto border border-gray-200 rounded-lg p-3">
-                            <p className="font-semibold text-lg">Properties</p>
-                            <BookUsersComponent/>   
+                        <div className="h-full overflow-y-auto border border-gray-200 rounded-lg py-3">
+                            <p className=" font-extrabold text-gray-600 text-lg text-center">Properties</p>
+                            <BookPropertyListComponent/>   
                         </div>
                     </div>
                 </aside>
