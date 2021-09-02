@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import MultiSelect from 'react-multi-select-component';
-import ImageUploadComponent from './imageupload';
 import { InputBox, Toggle } from 'components/basicui/basicui';
 import { useDispatch } from 'react-redux';
 import { createNewProperty } from 'reduxstore/propertyreducer/action';
 import { Toast } from 'components/common/notification';
-import { hostRemoveAllRecord } from 'firebaseStorage/hostspace';
+import ImageUploadToAWSComponent from 'components/common/uploadImage';
 
 const propertyDescribe = [ 
     { label: 'Quiet Neighborhood', value:"Quiet Neighborhood" }, 
@@ -14,11 +13,6 @@ const propertyDescribe = [
     { label: 'Sleek Interior', value: 'Sleek Interior' }, 
     { label: 'Ideal Location', value: 'Ideal Location' }, 
     { label: 'Roomy and Big Space', value: 'Roomy and Big Space'}
-];
-const propertyspecialFeature = [
-    { label: 'Security Camera',  value: 'Security Camera'}, 
-    { label: 'Weapons',  value: 'Weapons'}, 
-    { label: 'Dangerous', value: 'Dangerous'}
 ];
 
 function HostNewPropertyStepThree({ previousStep, property, setProperty, setStep }) {
@@ -83,7 +77,6 @@ function HostNewPropertyStepThree({ previousStep, property, setProperty, setStep
     const createNewSpace = () => {
         dispatch(createNewProperty(property));
         Toast('','New property is created','success');
-        hostRemoveAllRecord();
     }
 
     return (
@@ -94,8 +87,8 @@ function HostNewPropertyStepThree({ previousStep, property, setProperty, setStep
                 </div>
                 <div className="py-2">
                     <form>
-                        <ImageUploadComponent property={property} setProperty={setProperty}/>
-                        <div className=" mt-4 border-t grid md:grid-cols-2 gap-4 py-5">
+                        {/* <ImageUploadComponent property={property} setProperty={setProperty}/> */}
+                        <div className=" mt-4 grid md:grid-cols-2 gap-4 py-5">
                             <div className='text-gray-700'>
                                 <label className="text-sm font-medium">Describe the property.</label>
                                 <MultiSelect
@@ -128,6 +121,9 @@ function HostNewPropertyStepThree({ previousStep, property, setProperty, setStep
                     <div className="py-5 flex justify-between">
                         <button className="bg-red-500 focus:bg-red-700 text-white px-10 py-2 rounded-md" onClick={previousStep}>Prev</button>
                         <button className="bg-red-500 focus:bg-red-700 text-white px-10 py-2 rounded-md" onClick={createNewSpace}>Create</button>
+                    </div>
+                    <div className="border-t">
+                        <ImageUploadToAWSComponent/>
                     </div>
                 </footer>
             </div>

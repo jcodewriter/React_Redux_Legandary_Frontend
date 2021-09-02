@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom'
 import { deletePropertyById } from 'reduxstore/propertyreducer/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { TrashIcon, PencilAltIcon, PlusIcon } from '@heroicons/react/outline'
-import { deleteImage } from 'firebaseStorage/functions';
 import { SpinnerCircularFixed } from 'spinners-react';
   
 export default function ItemsTableComponent( {getSelected} ) {
@@ -30,9 +29,6 @@ export default function ItemsTableComponent( {getSelected} ) {
   const dispatch = useDispatch();
   const DeleteProperty = () => {
     if(selected){
-      selected.imageURLs.map((item) => {
-        deleteImage(item.url)
-      });
       dispatch(deletePropertyById(selected?._id));
     }
   }
@@ -48,8 +44,15 @@ export default function ItemsTableComponent( {getSelected} ) {
 
   return (
     <div>
-      <div className="grid grid-cols-2 mb-5">
-        <div className="px-10 py-2 w-max mx-auto flex bg-yellow-500 text-white text-center hover:bg-yellow-700 rounded-md cursor-pointer" onClick={gotoCreateNew}>New <PlusIcon/></div>
+      <div className="grid grid-cols-1 sm:grid-cols-4 mb-5">
+        <div
+          type="button"
+          onClick={gotoCreateNew}
+          className="inline-flex object-contain items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 focus:outline-none"
+        >
+          <PlusIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+          Add new Property
+        </div>
       </div>
       {
         status !== 1
