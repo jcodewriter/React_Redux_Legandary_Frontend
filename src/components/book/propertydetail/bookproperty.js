@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 
-function BookPropertyDetail({ bookData, setBookData }) {
+function BookPropertyDetail({ bookData }) {
     const property = useSelector((state) => state.properties.property);
  
     return (
@@ -38,10 +38,16 @@ function BookPropertyDetail({ bookData, setBookData }) {
                             <p className="underline">${property?.nightlyRate} x {bookData.dateArray?.length} nights</p>
                             <p>${ parseInt(property?.nightlyRate) * bookData.dateArray?.length}</p>
                         </div>
-                        <div className="flex pb-5 px-5 justify-between">
-                            <p className="underline">Deposit fee</p>
-                            <p>${property?.depositFee | 0}</p>
+                        <div className="flex justify-between py-4 px-5 text-gray-800">
+                            <p className="underline">Tax Fee(6.5%)</p>
+                            <p>${ (bookData?.totalCost/1.065 * 0.065).toFixed(2)}</p>
                         </div>
+                        {
+                            property?.depositFee && <div className="flex pb-5 px-5 justify-between">
+                                <p className="underline">Deposit fee</p>
+                                <p>${property?.depositFee | 0}</p>
+                            </div>
+                        }
                         {
                             bookData.pets !== 0 && <div className="flex pb-5 px-5 justify-between">
                                 <p className="underline">Pet fee</p>

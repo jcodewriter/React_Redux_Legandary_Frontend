@@ -11,19 +11,13 @@ import PolicyPage from "./policy";
 import NotFoundPage from "./404";
 import EmailVerificaionPage from "./emailverification";
 import NotiVerificationPage from "./emailverification/notiverification";
-import BookPage from "./book";
-import EditProfilePage from "./editprofile";
-import Messagespage from "./message";
-import BookingHistoryPage from "./bookhistory";
 import ScrollToTop from "shared/scrolltotop";
-import GuidePage from "./guide";
-import { PrivateRoute } from "shared/function";
 
 export default function MainLayout() {
   return (
     <>
       <ScrollToTop>
-        <HeaderComponent />
+        <HeaderComponent/>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/properties" component={PropertiesPage} />
@@ -34,11 +28,6 @@ export default function MainLayout() {
           <Route path="/policy" component={PolicyPage}/>
           <Route path="/verify/:token" component={EmailVerificaionPage}/>
           <Route path="/verifynoti" component={NotiVerificationPage}/>
-          <PrivateRoute path="/book/:id" component={BookPage}/>
-          <Route path="/edit-profile" component={EditProfilePage}/>
-          <PrivateRoute path="/messages" component={Messagespage}/>
-          <PrivateRoute path="/book-history" component={BookingHistoryPage}/>
-          <PrivateRoute path="/user-managemet" component={BookingHistoryPage}/>
           <Route component={NotFoundPage}/>
         </Switch>
         <FooterComponent />

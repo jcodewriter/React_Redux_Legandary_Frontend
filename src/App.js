@@ -1,13 +1,13 @@
 import React from 'react'
 import './App.css';
 import MainLayout from 'views/mainlayout';
-import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import DashboardMainLayout from 'admin/mainlayout';
 import SigninPage from 'views/signin';
 import SignupPage from 'views/signup';
 import { useSelector } from 'react-redux';
-import HostMainLayoutPage from 'views/host/mainlayout';
 import { PrivateRoute } from 'shared/function';
+import PrivateLayout from 'views/privateLayout';
 
 function App() {
   return (
@@ -20,12 +20,12 @@ function App() {
           <Route exact path="/signup">
             <SignupPage/>
           </Route>
-          <PrivateRoute path="/host">
-            <HostMainLayoutPage/>
-          </PrivateRoute>
           <AdminRoute path="/admin">
             <DashboardMainLayout/>
           </AdminRoute>
+          <PrivateRoute path="/user">
+            <PrivateLayout/>
+          </PrivateRoute>
           <Route path="/">
             <MainLayout/>
           </Route>

@@ -29,7 +29,8 @@ function BookPage({ match }) {
         checkedout: query.checkedout,
         totalCost: 0,
         dateArray: [],
-        status: null
+        status: null,
+        propertyId: match.params.id
     })
 
     useEffect(() => {
@@ -38,7 +39,7 @@ function BookPage({ match }) {
             ...bookData,
             dateArray: dates,
             hostId: property?.hostInfo?.userId,
-            totalCost: (parseInt(property?.nightlyRate) * dates.length) + (property?.depositFee | 0) + ((property?.petAllowFee?.fee | 0)*bookData.pets)
+            totalCost: (((parseInt(property?.nightlyRate) * dates.length) + (property?.depositFee | 0) + ((property?.petAllowFee?.fee | 0)*bookData.pets))*1.065).toFixed(2)
         })
     }, [property])
 
@@ -46,10 +47,10 @@ function BookPage({ match }) {
         <div className="bg-white">
             <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto py-10 gap-5">
                 <div>
-                    <PropertyDetailComponent setBookData={setBookData} bookData={bookData}/>
+                    <PropertyDetailComponent bookData={bookData}/>
                 </div>
                 <div>
-                    <BookDetailComponent setBookData={setBookData} bookData={bookData}/>
+                    <BookDetailComponent bookData={bookData}/>
                 </div>
             </div>
                                 

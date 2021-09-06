@@ -27,6 +27,37 @@ export const emailVerify = async ( token ) => {
     )
 }
 
+//Link Stripe account
+export const stripeAccount = async ( token ) => {
+    axios.defaults.headers.common['Authorization'] =  `${token}`;
+    return await axios.post(
+        `${backend_url}/users/stripe_account`,
+        {
+            headers:{
+                'Authorization': `${token}`,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            }
+        }
+
+    )
+}
+
+export const stripeLink = async ( token, body ) => {
+    return await axios.post(
+        `${backend_url}/users/stripe_link`,
+        JSON.stringify(body),
+        {
+            headers:{
+                'Authorization': `${token}`,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            }
+        }
+
+    )
+}
+
 //Upload Avatar
 export const saveAvatarUrlToBackend = async ( id, url, token ) => {
     return await axios.post(
@@ -35,6 +66,23 @@ export const saveAvatarUrlToBackend = async ( id, url, token ) => {
             "userId": id,
             "avatarURL": url
         },
+        {
+            headers: {
+                'Authorization': `${token}`,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            }
+        }
+
+    )
+}
+
+//Payment intent
+export const paymentIntent = async (body, token) => {
+    axios.defaults.headers.common['Authorization'] =  `${token}`;
+    return await axios.post(
+        backend_url + 'payment/payment-intent',
+        JSON.stringify(body),
         {
             headers: {
                 'Authorization': `${token}`,
