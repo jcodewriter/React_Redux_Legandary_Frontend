@@ -12,6 +12,7 @@ import { iconList } from "components/detailview/amenities/icons";
 import { CheckCircleIcon, XCircleIcon, PlusCircleIcon } from "@heroicons/react/outline";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import { updatePropertyById } from "reduxstore/propertyreducer/action";
+import EditPropertyLocationComponent from "components/admin/manageitem/editfields/editlocation";
 
 export default function CreateNewPropertyPage() {
   const location = useLocation();
@@ -27,7 +28,6 @@ export default function CreateNewPropertyPage() {
   const [isEdit, setIsEdit] = useState(false);
   const [selectedAmenity, setSelectedAmenity] = useState(null);
   const handleOnSelect = (item) => {
-    console.log(item);
     setSelectedAmenity(item.name);
   };
   const formatResult = (item) => {
@@ -111,7 +111,7 @@ export default function CreateNewPropertyPage() {
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5  mt-4">
+      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">
         <p className="border-b py-2 text-xl">Property Feature</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 py-2">
           <div>
@@ -142,7 +142,7 @@ export default function CreateNewPropertyPage() {
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sm:gap-4 py-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 sm:gap-4 py-2">
           <div>
             <EditPropertyFieldComponent
               label="Guests:"
@@ -155,11 +155,21 @@ export default function CreateNewPropertyPage() {
           </div>
           <div>
             <EditPropertyFieldComponent
-              label="Bathrooms:"
-              value={property?.bathroomNum}
+              label="Full Bathrooms:"
+              value={property?.fullBathNum | 0}
               unit=""
               type="number"
-              variableName="bathroomNum"
+              variableName="fullBathNum"
+              propertyID={propertyId}
+            />
+          </div>
+          <div>
+            <EditPropertyFieldComponent
+              label="Half Bathrooms:"
+              value={property?.halfBathNum | 0}
+              unit=""
+              type="number"
+              variableName="halfBathNum"
               propertyID={propertyId}
             />
           </div>
@@ -185,7 +195,7 @@ export default function CreateNewPropertyPage() {
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5  mt-4">
+      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">
         <p className="border-b py-2 text-xl">Amenities</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 px-5 py-5">
           {property?.amenities?.map((amenity, index) => (
@@ -238,6 +248,80 @@ export default function CreateNewPropertyPage() {
               />
             </div>
           )}
+        </div>
+      </div>
+      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">
+        <p className="border-b py-2 text-xl">Fees</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 divide-x mt-3">
+          <div className="px-4">
+            <EditPropertyFieldComponent
+              label="Deposit Fee:"
+              value={property?.depositFee | 0}
+              unit="$"
+              type="number"
+              variableName="depositFee"
+              propertyID={propertyId}
+            />
+          </div>
+          <div className="px-4">
+            <div className="grid grid-cols-2">
+              <div>
+                <EditPropertyFieldComponent
+                  label="Pet Fee:"
+                  value={property?.petAllowFee?.fee | 0}
+                  unit="$"
+                  type="number"
+                  variableName="petAllowFee"
+                  propertyID={propertyId}
+                />
+              </div>
+              <div>
+                <EditPropertyFieldComponent
+                  label="Pet Allow Number:"
+                  value={property?.petAllowFee?.number | 0}
+                  unit=""
+                  type="number"
+                  variableName="petAllowFee"
+                  propertyID={propertyId}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">
+        <p className="border-b py-2 text-xl">Location</p>
+        <div>
+          <p>
+            {property?.propertyLocation?.apartment}, {property?.propertyLocation?.street} {property?.propertyLocation?.city},{" "}
+            {property?.propertyLocation?.country}, {property?.propertyLocation?.zip}
+          </p>
+          <div>
+            <EditPropertyLocationComponent location={property?.propertyLocation} propertyId={propertyId} />
+          </div>
+        </div>
+      </div>
+      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">
+        <p className="border-b py-2 text-xl">Settings</p>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <EditPropertyFieldBySelectComponent
+              label="Instant Book"
+              value={property?.instantBook ? "TRUE" : "FALSE"}
+              options={["Instant Book", "No"]}
+              variableName="instantBook"
+              propertyID={propertyId}
+            />
+          </div>
+          <div>
+            <EditPropertyFieldBySelectComponent
+              label="Manage By"
+              value={property?.manageType}
+              options={["LEA", "HOST"]}
+              variableName="manageType"
+              propertyID={propertyId}
+            />
+          </div>
         </div>
       </div>
       <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">

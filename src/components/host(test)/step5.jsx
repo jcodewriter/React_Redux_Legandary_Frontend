@@ -11,7 +11,7 @@ function HostGuestComponent({ nextStep, previousStep, property, setProperty }) {
     });
   };
   const gotoNext = () => {
-    if (property.guestNum && property.bedsNum && property.bedroomNum && property.bathroomNum) {
+    if (property.guestNum && property.bedsNum && property.bedroomNum && property.fullBathNum && property.halfBathNum) {
       nextStep();
     } else {
       Toast("", "You should add all information", "danger");
@@ -68,10 +68,19 @@ function HostGuestComponent({ nextStep, previousStep, property, setProperty }) {
                   />
                 </div>
                 <div className="py-2">
-                  <span className="text-white">Bathrooms (# of bathrooms in the property)</span>
+                  <span className="text-white">Full Bathrooms (# of full bathrooms in the property)</span>
                   <InputBox
                     onchange={(e) => {
-                      setGuests(e, "bathroomNum");
+                      setGuests(e, "fullBathNum");
+                    }}
+                    type="number"
+                  />
+                </div>
+                <div className="py-2">
+                  <span className="text-white">Half Bathrooms (# of half bathrooms in the property)</span>
+                  <InputBox
+                    onchange={(e) => {
+                      setGuests(e, "halfBathNum");
                     }}
                     type="number"
                   />

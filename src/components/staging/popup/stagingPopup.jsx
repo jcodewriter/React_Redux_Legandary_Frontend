@@ -4,12 +4,43 @@ import { Dialog, Transition } from "@headlessui/react";
 import { SparklesIcon } from "@heroicons/react/outline";
 import { formLayout } from "./constant";
 import { InputBox } from "components/basicui/basicui";
+import { staging } from "shared/api";
+import { useHistory } from "react-router";
 
 export default function StagingInfoModalComponent({ isOpen, setisOpen }) {
   const cancelButtonRef = useRef(null);
+  const history = useHistory();
 
   const onClose = () => {
     setisOpen(false);
+  };
+
+  const [stagingInfo, setStagingInfo] = useState({
+    username: "",
+    email: "",
+    phone: "",
+    spaceType: "House",
+    spaceStyle: "Traditional",
+    spaceArea: "Less than 500 sq ft",
+    spaceFurniture: "Living Room",
+    stagingTime: "Immediately",
+    ownerType: "Homeowner",
+  });
+
+  const setValue = (e, param) => {
+    setStagingInfo({
+      ...stagingInfo,
+      [param]: e.target.value,
+    });
+  };
+
+  const onSubmit = async () => {
+    if (stagingInfo.username && stagingInfo.email && stagingInfo.phone) {
+      const res = await staging(stagingInfo);
+      if (res.status === 200) {
+        history.push("/staging-success");
+      }
+    }
   };
 
   return (
@@ -63,13 +94,32 @@ export default function StagingInfoModalComponent({ isOpen, setisOpen }) {
                     </p>
                     <div className="py-5 border-b grid grid-cols-1 sm:grid-cols-2 sm:gap-4">
                       <div className="col-span-1">
-                        <InputBox placeholder="Name" />
+                        <InputBox
+                          placeholder="Name"
+                          value={stagingInfo.username}
+                          onchange={(e) => {
+                            setValue(e, "username");
+                          }}
+                        />
                       </div>
                       <div className="col-span-1">
-                        <InputBox placeholder="Email" type="email" />
+                        <InputBox
+                          placeholder="Email"
+                          type="email"
+                          value={stagingInfo.email}
+                          onchange={(e) => {
+                            setValue(e, "email");
+                          }}
+                        />
                       </div>
                       <div className="col-span-2">
-                        <InputBox placeholder="Phone Number" />
+                        <InputBox
+                          placeholder="Phone Number"
+                          value={stagingInfo.phone}
+                          onchange={(e) => {
+                            setValue(e, "phone");
+                          }}
+                        />
                       </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 py-5 gap-5 text-gray-700">
@@ -81,6 +131,9 @@ export default function StagingInfoModalComponent({ isOpen, setisOpen }) {
                             name="propertyType"
                             className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300  sm:text-sm rounded-md"
                             defaultValue="Canada"
+                            onChange={(e) => {
+                              setValue(e, item.name);
+                            }}
                           >
                             {item.options.map((option, index) => (
                               <option key={index}>{option}</option>
@@ -97,7 +150,7 @@ export default function StagingInfoModalComponent({ isOpen, setisOpen }) {
                 <button
                   type="button"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
-                  onClick={onClose}
+                  onClick={onSubmit}
                 >
                   Submit
                 </button>
