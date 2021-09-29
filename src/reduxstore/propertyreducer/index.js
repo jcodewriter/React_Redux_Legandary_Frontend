@@ -72,6 +72,17 @@ const searchPropertiesFromAPI = async (requestBody) => {
   return res;
 };
 
+const getPropertyByHostFromAPI = async (id) => {
+  const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api/property/user/${id}`;
+  const res = axios.get(backend_url, {
+    headers: {
+      Authorization: `${token}`,
+      "X-Requested-With": "XMLHttpRequest",
+    },
+  });
+  return res;
+};
+
 export {
   getAllPropertiesFromAPI,
   getPropertyByIdFromAPI,
@@ -79,4 +90,5 @@ export {
   updatePropertyByIdFromAPI,
   craeteNewPropertFromAPI,
   searchPropertiesFromAPI,
+  getPropertyByHostFromAPI,
 };

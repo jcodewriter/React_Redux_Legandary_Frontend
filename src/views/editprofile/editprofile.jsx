@@ -24,55 +24,23 @@ export default function EditProfilePage() {
     },
   ]);
   useEffect(() => {
-    switch (location.pathname) {
-      case "/user/edit-profile":
-        setTaps([
-          { name: "Personal info", href: "/user/edit-profile", current: true },
-          {
-            name: "Login & Security",
-            href: "/user/edit-profile/security-setting",
-            current: false,
-          },
-          {
-            name: "Payment & Payout",
-            href: "/user/edit-profile/payment-setting",
-            current: false,
-          },
-        ]);
-        break;
-      case "/user/edit-profile/security-setting":
-        setTaps([
-          { name: "Personal info", href: "/user/edit-profile", current: false },
-          {
-            name: "Login & Security",
-            href: "/user/edit-profile/security-setting",
-            current: true,
-          },
-          {
-            name: "Payment & Payout",
-            href: "/user/edit-profile/payment-setting",
-            current: false,
-          },
-        ]);
-        break;
-      case "/user/edit-profile/payment-setting":
-        setTaps([
-          { name: "Personal info", href: "/user/edit-profile", current: false },
-          {
-            name: "Login & Security",
-            href: "/user/edit-profile/security-setting",
-            current: false,
-          },
-          {
-            name: "Payment & Payout",
-            href: "/user/edit-profile/payment-setting",
-            current: true,
-          },
-        ]);
-        break;
-      default:
-        break;
-    }
+    setTaps([
+      {
+        name: "Personal info",
+        href: "/user/edit-profile",
+        current: location.pathname === "/user/edit-profile" ? true : false,
+      },
+      {
+        name: "Login & Security",
+        href: "/user/edit-profile/security-setting",
+        current: location.pathname === "/user/edit-profile/security-setting" ? true : false,
+      },
+      {
+        name: "Payment & Payout",
+        href: "/user/edit-profile/payment-setting",
+        current: location.pathname === "/user/edit-profile/payment-setting" ? true : false,
+      },
+    ]);
   }, [location]);
 
   return (

@@ -7,6 +7,7 @@ import {
   createNewProperty,
   searchProperties,
   clearState,
+  getPropertiesByHost,
 } from "./action";
 const PREFIX = "property";
 
@@ -54,6 +55,10 @@ export const PropertySlice = createSlice({
         state.properties = action.payload;
         state.status = STATUS.FULFILLED;
       })
+      .addCase(getPropertiesByHost.fulfilled, (state, action) => {
+        state.properties = action.payload;
+        state.status = STATUS.FULFILLED;
+      })
       .addCase(clearState.fulfilled, (state, action) => {
         (state.properties = []), (state.property = {}), (state.status = STATUS.INITIAL);
       })
@@ -66,5 +71,5 @@ export const PropertySlice = createSlice({
   },
 });
 
-export { getAllProperties, getPropertyById, createNewProperty, updatePropertyById, deletePropertyById };
+export { getAllProperties, getPropertyById, createNewProperty, updatePropertyById, deletePropertyById, getPropertiesByHost };
 export default PropertySlice.reducer;

@@ -9,7 +9,7 @@ export const getLatLangArray = async (properties) => {
   properties?.forEach((property) => {
     promises.push(
       Geocode.fromAddress(
-        `apt${property.propertyLocation.apartment} ${property.propertyLocation.street} ${property.propertyLocation.city} ${property.propertyLocation.state} ${property.propertyLocation.country}`
+        `apt${property.propertyLocation?.apartment} ${property.propertyLocation?.street} ${property.propertyLocation?.city} ${property.propertyLocation?.state} ${property.propertyLocation?.country}`
       ).then((res) => result.push({ geo: res.results[0].geometry.location, property: property }))
     );
   });

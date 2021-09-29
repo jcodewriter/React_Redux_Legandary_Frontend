@@ -11,9 +11,7 @@ function BookDetailComponent({ bookData, property }) {
     <div className="text-gray-600 p-5 shadow-lg rounded-md">
       <div className="flex items-center flex-wrap">
         <ChevronLeftIcon className="w-8 h-8" />
-        <h2 className="text-3xl font-extrabold tracking-tight ml-2">
-          Booking Details
-        </h2>
+        <h2 className="text-3xl font-extrabold tracking-tight ml-2">Booking Details</h2>
       </div>
       <div className="px-2">
         <div className="py-6 tracking-tight border-b">
