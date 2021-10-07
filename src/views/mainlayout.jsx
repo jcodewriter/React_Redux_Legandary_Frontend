@@ -21,7 +21,7 @@ export default function MainLayout() {
   return (
     <ScrollToTop>
       <HeaderComponent />
-      <div className="pb-72">
+      <div className="pb-60">
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/properties" component={PropertiesPage} />
