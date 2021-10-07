@@ -16,15 +16,17 @@ function PrivateLayout() {
     <div>
       <ScrollToTop>
         <HeaderComponent />
-        <Switch>
-          <Route path="/user/host-new" component={HostNewPropertyPage} />
-          <Route path="/user/book/:id" component={BookPage} />
-          <Route path="/user/manage-list" component={ManageListPage} />
-          <Route path="/user/edit-profile" component={EditProfilePage} />
-          <Route path="/user/messages" component={Messagespage} />
-          <Route path="/user/book-history" component={BookingHistoryPage} />
-          <Route component={NotFoundPage} />
-        </Switch>
+        <div className="pb-72">
+          <Switch>
+            <Route path="/user/host-new" component={HostNewPropertyPage} />
+            <Route path="/user/book/:id" component={BookPage} />
+            <Route path="/user/manage-list" component={ManageListPage} />
+            <Route path="/user/edit-profile" component={EditProfilePage} />
+            <Route path="/user/messages" component={Messagespage} />
+            <Route path="/user/book-history" component={BookingHistoryPage} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </div>
         <FooterComponent />
       </ScrollToTop>
     </div>

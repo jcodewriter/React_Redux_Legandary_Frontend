@@ -12,7 +12,7 @@ import HostNewPropertyPage from "views/host(test)/host";
 
 function App() {
   return (
-    <div>
+    <div className="min-h-screen relative">
       <Router>
         <Switch>
           <Route exact path="/signin">

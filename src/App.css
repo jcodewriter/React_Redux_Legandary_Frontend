@@ -44,3 +44,19 @@ body {
 .google-places-autocomplete__suggestion:hover{
   background-color: #00000011;
 }
+
+.fc .fc-button-primary:not(:disabled):active, .fc .fc-button-primary:not(:disabled).fc-button-active {
+  color: black !important;
+  background-color: white !important;
+  border-color: black !important;
+}
+.fc .fc-button-primary {
+  color: black !important;
+  background-color: white !important;
+  border-color: white !important;
+}
+.fc .fc-button-primary:hover {
+  color: black !important;
+  background-color: white !important;
+  border-color: white !important;
+}

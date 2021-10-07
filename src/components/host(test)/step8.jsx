@@ -87,12 +87,17 @@ function HostFeesComponent({ nextStep, previousStep, property, setProperty }) {
                     <span className="text-white text-lg">Deposite Fee($)</span>
                     <p className="text-white">As a host, you can set a Deposit fee for your property.</p>
                     <InputBox type="number" onchange={setDepositeFee} />
-                    <span className="text-white text-xs">If you want to set a deposit fee, please enter your desired amount. Please leave it blank otherwise.</span>
+                    <span className="text-white text-xs">
+                      If you want to set a deposit fee, please enter your desired amount. Please leave it blank otherwise.
+                    </span>
                   </div>
                 </div>
                 <p className="text-white mt-5 text-lg">Pet Fee($)</p>
-                <p className="text-white">If you selected to allow pets inside the property, you can also set a fee for each pet per night or accommodation.</p>
-                <div className="py-4">                  
+                <p className="text-white">
+                  If you selected to allow pets inside the property, you can also set a fee for each pet per night or
+                  accommodation.
+                </p>
+                <div className="py-4">
                   <p className="text-white">Select your pet free preference:</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="col-span-1">
@@ -134,7 +139,8 @@ function HostFeesComponent({ nextStep, previousStep, property, setProperty }) {
                 <p className="text-white text-lg mt-2">Other service offered by Legendary Estates Airbnb</p>
                 <p className="text-white">Management by Legendary Estates Airbnb</p>
                 <p className="text-white text-xs italic">
-                  LEA can manage your property and handle everything for you. If you agree to have your property managed by LEA, 20% of platform sales will go to LEA.
+                  LEA can manage your property and handle everything for you. If you agree to have your property managed by LEA,
+                  20% of platform sales will go to LEA.
                 </p>
                 <div className="flex items-center py-2">
                   <Toggle

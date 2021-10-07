@@ -1,6 +1,6 @@
 import React from "react";
 import DetailViewCarouselComponent from "components/detailview/carousel";
-import GoogleMapComponent from "components/detailview/googlemap";
+import GoogleMapComponent from "components/googlemap";
 import DateRangerComponent from "components/detailview/dateranger";
 import { useEffect, useState } from "react";
 import { getPropertyById } from "reduxstore/propertyreducer/action";
@@ -123,7 +123,9 @@ const PropertyDetailViewPage = (props) => {
                 </section>
                 <section aria-labelledby="quick-links-title">
                   <p className="text-gray-600 text-lg font-bold">Location</p>
-                  <GoogleMapComponent address={property?.propertyLocation} />
+                  <div className="h-60 relative">
+                    <GoogleMapComponent properties={[property]} />
+                  </div>
                 </section>
               </div>
 

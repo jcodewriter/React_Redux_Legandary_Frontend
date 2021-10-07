@@ -19,9 +19,9 @@ import MapSearchPage from "./mapsearch/mapsearch";
 
 export default function MainLayout() {
   return (
-    <>
-      <ScrollToTop>
-        <HeaderComponent />
+    <ScrollToTop>
+      <HeaderComponent />
+      <div className="pb-60">
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/properties" component={PropertiesPage} />
@@ -37,8 +37,8 @@ export default function MainLayout() {
           <Route path="/map-search" component={MapSearchPage} />
           <Route component={NotFoundPage} />
         </Switch>
-        <FooterComponent />
-      </ScrollToTop>
-    </>
+      </div>
+      <FooterComponent />
+    </ScrollToTop>
   );
 }

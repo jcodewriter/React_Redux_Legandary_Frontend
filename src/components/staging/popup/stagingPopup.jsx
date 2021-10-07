@@ -89,7 +89,8 @@ export default function StagingInfoModalComponent({ isOpen, setisOpen }) {
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Enter your information to schedule an appointment with our staging consultant. Provide your property details and we will reach out to you shortly to discuss options to transform your space
+                      Enter your information to schedule an appointment with our staging consultant. Provide your property details
+                      and we will reach out to you shortly to discuss options to transform your space
                     </p>
                     <div className="py-5 border-b grid grid-cols-1 sm:grid-cols-2 sm:gap-4">
                       <div className="col-span-1">
