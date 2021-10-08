@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getHostReservationFromAPI } from "reduxstore/bookreducer";
 
 import {
   getAllPropertiesFromAPI,
@@ -8,6 +7,7 @@ import {
   updatePropertyByIdFromAPI,
   craeteNewPropertFromAPI,
   searchPropertiesFromAPI,
+  getPropertyByHostFromAPI,
 } from ".";
 
 export const getAllProperties = createAsyncThunk("property/getAll", async () => {
@@ -42,7 +42,7 @@ export const searchProperties = createAsyncThunk("property/search", async (reque
 });
 
 export const getPropertiesByHost = createAsyncThunk("property/getByHost", async (id) => {
-  const response = await getHostReservationFromAPI(id);
+  const response = await getPropertyByHostFromAPI(id);
   return response.data;
 });
 

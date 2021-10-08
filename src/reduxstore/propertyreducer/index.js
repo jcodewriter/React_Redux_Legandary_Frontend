@@ -78,6 +78,7 @@ const getPropertyByHostFromAPI = async (id) => {
     headers: {
       Authorization: `${token}`,
       "X-Requested-With": "XMLHttpRequest",
+      "Content-Type": "application/json",
     },
   });
   return res;

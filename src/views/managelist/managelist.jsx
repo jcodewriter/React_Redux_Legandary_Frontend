@@ -6,6 +6,8 @@ import { SwitchHorizontalIcon, ViewListIcon, CalendarIcon, ClipboardListIcon } f
 import ManageListCalendarComponent from "components/host/managelist/calendar";
 import ManageListTransactionsComponent from "components/host/managelist/transcations";
 import ManageListListComponent from "components/host/managelist/list";
+import { useDispatch, useSelector } from "react-redux";
+import { getPropertiesByHost } from "reduxstore/propertyreducer/slice";
 
 function ManageListPage() {
   const [tabs, setTabs] = useState([
@@ -34,8 +36,10 @@ function ManageListPage() {
       current: false,
     },
   ]);
-
   const location = useLocation();
+  const dispatch = useDispatch();
+  const userID = useSelector((state) => state.auth.user.userID);
+
   useEffect(() => {
     setTabs([
       {
@@ -64,6 +68,11 @@ function ManageListPage() {
       },
     ]);
   }, [location]);
+
+  useEffect(() => {
+    console.log(userID);
+    dispatch(getPropertiesByHost(userID));
+  }, []);
   return (
     <div>
       <div className="max-w-7xl mx-auto">
